@@ -1,0 +1,9 @@
+{
+  "id": "ap-smart-counter",
+  "name": "AP SMART Counter",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Contador de clientes y progreso hacia tu objetivo SMART: S/4,000 mensuales con 20 clientes AP.",
+  "author": "Claudian",
+  "isDesktopOnly": false
+}

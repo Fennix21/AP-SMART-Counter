@@ -1,0 +1,722 @@
+/* ============================================
+   AP SMART Counter — Styles
+   ============================================ */
+
+/* --- STATUS BAR --- */
+.ap-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  font-weight: 600;
+}
+.ap-status-bar:hover {
+  background: var(--background-modifier-hover);
+}
+.ap-status-bar .ap-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: ap-pulse-anim 2s ease-in-out infinite;
+}
+.ap-status-bar .ap-pulse.phase-start { background: #ef4444; }
+.ap-status-bar .ap-pulse.phase-mid   { background: #f59e0b; }
+.ap-status-bar .ap-pulse.phase-good  { background: #22c55e; }
+.ap-status-bar .ap-pulse.phase-done  { background: #06b6d4; }
+@keyframes ap-pulse-anim {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* --- SIDEBAR VIEW --- */
+.ap-counter-root {
+  padding: 16px;
+  font-family: var(--font-interface);
+  user-select: none;
+}
+.ap-counter-root h2 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-normal);
+  letter-spacing: -0.2px;
+}
+.ap-counter-root .ap-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* Big number */
+.ap-big-number {
+  text-align: center;
+  padding: 20px 0 8px 0;
+}
+.ap-big-number .ap-current {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -3px;
+}
+.ap-big-number .ap-separator {
+  font-size: 36px;
+  color: var(--text-muted);
+  margin: 0 2px;
+}
+.ap-big-number .ap-target {
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+.ap-big-number .ap-label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-weight: 500;
+}
+/* Color phases for big number */
+.ap-big-number.phase-start .ap-current { color: #ef4444; }
+.ap-big-number.phase-mid   .ap-current { color: #f59e0b; }
+.ap-big-number.phase-good  .ap-current { color: #22c55e; }
+.ap-big-number.phase-done  .ap-current { color: #06b6d4; }
+
+/* Progress bar */
+.ap-progress-wrap {
+  margin: 16px 0;
+}
+.ap-progress-bar {
+  width: 100%;
+  height: 10px;
+  background: var(--background-modifier-border);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+.ap-progress-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s;
+}
+.ap-progress-fill.phase-start { background: linear-gradient(90deg, #ef4444, #f87171); }
+.ap-progress-fill.phase-mid   { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.ap-progress-fill.phase-good  { background: linear-gradient(90deg, #22c55e, #4ade80); }
+.ap-progress-fill.phase-done  { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+.ap-progress-pct {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Revenue card */
+.ap-revenue-card {
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 16px 0;
+}
+.ap-revenue-card .ap-rev-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.ap-revenue-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.ap-revenue-row .ap-rev-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.ap-revenue-row .ap-rev-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-normal);
+}
+.ap-revenue-row .ap-rev-value.ap-highlight {
+  color: #22c55e;
+}
+
+/* Week tracker */
+.ap-week-card {
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 16px 0;
+}
+.ap-week-card .ap-week-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.ap-week-blocks {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+.ap-week-block {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+}
+.ap-week-block.past {
+  background: var(--background-modifier-border);
+  color: var(--text-faint);
+  opacity: 0.6;
+}
+.ap-week-block.current {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+.ap-week-block.future {
+  background: var(--background-primary);
+  border: 1px dashed var(--background-modifier-border);
+  color: var(--text-faint);
+}
+
+/* Milestone tracker */
+.ap-milestones {
+  margin: 16px 0;
+}
+.ap-milestones .ap-ms-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.ap-milestone-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+.ap-milestone-item .ap-ms-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.ap-milestone-item .ap-ms-icon.done {
+  background: #22c55e;
+  color: white;
+}
+.ap-milestone-item .ap-ms-icon.pending {
+  background: var(--background-modifier-border);
+  color: var(--text-faint);
+}
+.ap-milestone-item .ap-ms-text {
+  color: var(--text-normal);
+}
+.ap-milestone-item .ap-ms-text.done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Focus question */
+.ap-focus-card {
+  background: var(--background-secondary);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 8px 8px 0;
+  padding: 14px;
+  margin: 16px 0;
+}
+.ap-focus-card .ap-focus-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #3b82f6;
+  margin-bottom: 6px;
+}
+.ap-focus-card .ap-focus-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-normal);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Action buttons */
+.ap-actions {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+}
+.ap-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+  text-align: center;
+}
+.ap-btn:active {
+  transform: scale(0.96);
+}
+.ap-btn-add {
+  background: #22c55e;
+  color: white;
+}
+.ap-btn-add:hover {
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+.ap-btn-remove {
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+  flex: 0.5;
+}
+.ap-btn-remove:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Client log */
+.ap-log-card {
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 16px 0;
+}
+.ap-log-card .ap-log-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.ap-log-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.ap-log-entry .ap-log-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ap-log-entry .ap-log-dot.add    { background: #22c55e; }
+.ap-log-entry .ap-log-dot.remove { background: #ef4444; }
+.ap-log-empty {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+/* --- STARTUP MODAL --- */
+
+/* === MODAL WRAPPER — CENTERING + CONTAINMENT === */
+.modal.ap-modal-wrapper {
+  max-width: 420px;
+  width: 90vw;
+  max-height: 88vh;
+  margin: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.modal.ap-modal-wrapper .modal-close-button {
+  display: none;
+}
+
+/* Container — holds bg + overlay + content */
+.ap-sm-container {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 88vh;
+  padding: 0 !important;
+}
+
+/* === BACKGROUND IMAGE LAYER === */
+.ap-sm-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 55%;
+  background-size: cover;
+  background-position: center 15%;
+  background-repeat: no-repeat;
+  z-index: 0;
+  animation: ap-bg-breathe 12s ease-in-out infinite alternate;
+}
+@keyframes ap-bg-breathe {
+  0%   { transform: scale(1);    opacity: 0.65; }
+  100% { transform: scale(1.06); opacity: 0.75; }
+}
+
+/* === DARK GRADIENT OVERLAY === */
+.ap-sm-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg,
+      rgba(0,0,0,0.10) 0%,
+      rgba(0,0,0,0.45) 25%,
+      rgba(0,0,0,0.82) 45%,
+      rgba(15,15,15,0.96) 60%,
+      rgb(15,15,15) 100%
+    );
+  pointer-events: none;
+}
+
+/* === EYE GLOW EFFECTS === */
+.ap-sm-eyes {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 55%;
+  z-index: 2;
+  pointer-events: none;
+}
+.ap-sm-eye-glow {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  top: 23%;
+  filter: blur(8px);
+  animation: ap-eye-flicker 4s ease-in-out infinite;
+}
+.ap-sm-eye-glow.left  { left: 37%; }
+.ap-sm-eye-glow.right { left: 57%; }
+
+/* Eye glow colors per phase */
+.ap-sm-eye-glow.phase-start { background: #60a5fa; box-shadow: 0 0 20px 6px rgba(96,165,250,0.5); }
+.ap-sm-eye-glow.phase-mid   { background: #fbbf24; box-shadow: 0 0 20px 6px rgba(251,191,36,0.5); }
+.ap-sm-eye-glow.phase-good  { background: #4ade80; box-shadow: 0 0 20px 6px rgba(74,222,128,0.5); }
+.ap-sm-eye-glow.phase-done  { background: #22d3ee; box-shadow: 0 0 20px 6px rgba(34,211,238,0.5); }
+
+@keyframes ap-eye-flicker {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  30%      { opacity: 1;   transform: scale(1.2); }
+  50%      { opacity: 0.5; transform: scale(0.9); }
+  70%      { opacity: 0.9; transform: scale(1.1); }
+}
+
+/* === CONTENT LAYER === */
+.ap-startup-modal {
+  position: relative;
+  z-index: 3;
+  padding: 0 28px 24px;
+  text-align: center;
+  font-family: var(--font-interface);
+  color: #e5e7eb;
+}
+
+/* Spacer: pushes content below Guardian's face area */
+.ap-sm-hero-spacer {
+  height: 170px;
+}
+
+/* === STAGGERED ENTRANCE ANIMATIONS === */
+@keyframes ap-enter-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ap-enter-1 { animation: ap-enter-up 0.6s ease-out 0.2s both; }
+.ap-enter-2 { animation: ap-enter-up 0.5s ease-out 0.4s both; }
+.ap-enter-3 { animation: ap-enter-up 0.6s ease-out 0.55s both; }
+.ap-enter-4 { animation: ap-enter-up 0.5s ease-out 0.75s both; }
+.ap-enter-5 { animation: ap-enter-up 0.5s ease-out 0.90s both; }
+.ap-enter-6 { animation: ap-enter-up 0.5s ease-out 1.05s both; }
+.ap-enter-7 { animation: ap-enter-up 0.5s ease-out 1.20s both; }
+
+/* === PHASE BADGE === */
+.ap-sm-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  border: 1.5px solid;
+}
+.ap-sm-badge.phase-start { color: #ef4444; border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.1); }
+.ap-sm-badge.phase-mid   { color: #f59e0b; border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); }
+.ap-sm-badge.phase-good  { color: #22c55e; border-color: rgba(34,197,94,0.4);  background: rgba(34,197,94,0.1); }
+.ap-sm-badge.phase-done  { color: #06b6d4; border-color: rgba(6,182,212,0.4);  background: rgba(6,182,212,0.1); }
+
+/* === TITLE === */
+.ap-sm-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f9fafb;
+  margin-bottom: 2px;
+  letter-spacing: -0.3px;
+}
+.ap-sm-subtitle {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+/* === SVG RING + COUNTER === */
+.ap-ring-wrap {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  margin: 0 auto 10px;
+}
+.ap-ring-svg {
+  width: 100%;
+  height: 100%;
+}
+.ap-ring-bg {
+  fill: none;
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 7;
+}
+.ap-ring-fg {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.ap-ring-counter {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ap-ring-num {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+}
+.ap-ring-label {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* === REVENUE === */
+.ap-sm-revenue {
+  margin-top: 2px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.ap-sm-rev-current {
+  font-weight: 800;
+}
+.ap-sm-rev-arrow {
+  color: #6b7280;
+  font-weight: 400;
+}
+.ap-sm-rev-target {
+  color: #9ca3af;
+  font-weight: 400;
+}
+.ap-sm-rev-label {
+  font-size: 11px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+/* === COUNTDOWN === */
+.ap-sm-countdown {
+  margin: 4px 0 14px;
+}
+.ap-cd-blocks {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.ap-cd-block {
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 8px 14px 6px;
+  min-width: 64px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+.ap-cd-block.ap-cd-week-indicator {
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+}
+.ap-cd-num {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f3f4f6;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.ap-cd-unit {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #9ca3af;
+  margin-top: 3px;
+}
+.ap-cd-icon {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+.ap-cd-text {
+  font-size: 13px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* === FOCUS QUESTION === */
+.ap-sm-question {
+  background: rgba(255,255,255,0.04);
+  border-left: 3px solid #3b82f6;
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin: 0 0 18px;
+  text-align: left;
+}
+.ap-sm-q-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #60a5fa;
+  margin-bottom: 5px;
+}
+.ap-sm-q-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #d1d5db;
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* === CTA BUTTON === */
+.ap-sm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 40px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.35);
+}
+.ap-sm-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.5);
+}
+.ap-sm-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+.ap-sm-btn-arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.ap-sm-btn:hover .ap-sm-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* --- ADD CLIENT MODAL --- */
+.ap-add-modal {
+  padding: 20px;
+}
+.ap-add-modal h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.ap-add-modal .ap-input-group {
+  margin-bottom: 12px;
+}
+.ap-add-modal label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.ap-add-modal input,
+.ap-add-modal textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+  font-size: 14px;
+  font-family: var(--font-interface);
+  box-sizing: border-box;
+}
+.ap-add-modal textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+.ap-add-modal .ap-modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+.ap-add-modal .ap-modal-actions button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ap-add-modal .ap-modal-actions .ap-save-btn {
+  background: #22c55e;
+  color: white;
+}
+.ap-add-modal .ap-modal-actions .ap-cancel-btn {
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+}

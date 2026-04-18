@@ -1,0 +1,37 @@
+{
+  "currentClients": 0,
+  "targetClients": 20,
+  "weeklyPrice": 50,
+  "monthlyTarget": 4000,
+  "totalWeeks": 12,
+  "startDate": "2026-04-18",
+  "showOnStartup": true,
+  "clientLog": [],
+  "milestones": [
+    {
+      "at": 1,
+      "label": "Primer cliente beta",
+      "done": false
+    },
+    {
+      "at": 5,
+      "label": "Validación inicial (5)",
+      "done": false
+    },
+    {
+      "at": 10,
+      "label": "Mitad del camino (10)",
+      "done": false
+    },
+    {
+      "at": 15,
+      "label": "Tracción fuerte (15)",
+      "done": false
+    },
+    {
+      "at": 20,
+      "label": "Objetivo SMART completado (20)",
+      "done": false
+    }
+  ]
+}
